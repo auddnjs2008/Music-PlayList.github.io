@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="http://www.youtube.com/player_api"></script>
+    <script type="module" src="src/index.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/0f0e16d051.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Music PlayList</title>
+  </head>
+  <body>
+    <section class="login">
+      <form class="login__form">
+        <input type="text" placeholder="Type Your Id" name="id" />
+        <input
+          type="password"
+          placeholder="Type Your Password"
+          name="password"
+        />
+        <input type="submit" value="Login" />
+        <button class="login__toggle">Sign Up</button>
+        <div class="login__error"></div>
+        <footer><i class="fab fa-youtube"></i></footer>
+      </form>
+    </section>
+    <section class="mp3">
+      <div class="search">
+        <form class="search__form">
+          <input type="text" />
+        </form>
+        <ul class="search__window"></ul>
+        <div class="search__slider">
+          <i class="fas fa-caret-left"></i>
+          <i class="fas fa-caret-right"></i>
+        </div>
+      </div>
+      <div class="playList">
+        <ul class="playList__window"></ul>
+      </div>
+    </section>
+    <section class="player">
+      <div class="player__button">
+        <span class="backward"><i class="fas fa-backward"></i></span>
+        <span class="play"><i class="fas fa-play-circle"></i></span>
+        <span class="forward"><i class="fas fa-forward"></i></span>
+        <span class="random"><i class="fas fa-random"></i></span>
+      </div>
+      <div class="player__window"></div>
+    </section>
+    <div id="player"></div>
+  </body>
+</html>

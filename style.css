@@ -1,0 +1,171 @@
+* {
+  box-sizing: border-box;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+button {
+  outline: none;
+  border: none;
+}
+:root {
+  --red: #c4302b;
+  --pink: #f6bdb3;
+  --blue: #71a3cc;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__form * {
+  height: 35px;
+}
+
+.login__form {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  background-color: var(--red);
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.login__form input[type="text"],
+.login__form input[type="password"] {
+  border: 1px solid black;
+  outline: none;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.login__form input[type="submit"],
+.login__form button {
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background-color: var(--pink);
+  border-bottom: 1px solid black;
+  transition: transform 300ms ease-in;
+}
+
+.login__form input[type="submit"]:hover,
+.login__form button:hover {
+  transform: scale(1.01);
+}
+
+.login__error {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+}
+
+.login footer {
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: white;
+}
+
+.mp3 {
+  width: 400px;
+  border: 1px solid red;
+  margin: auto;
+  margin-top: 20px;
+  height: 650px;
+  padding: 10px;
+}
+.search {
+}
+
+.search__window {
+  display: flex;
+  list-style: none;
+  width: 380px;
+  padding: 0;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+.search__window::-webkit-scrollbar {
+  display: none;
+}
+.search__window button {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: var(--blue);
+  color: white;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.search__window button:active {
+  transform: scale(0.95);
+}
+
+.search__slider {
+  font-size: 40px;
+  width: 50px;
+  margin: auto;
+}
+
+.playList {
+  border: 1px solid black;
+  height: 330px;
+  padding: 10px;
+}
+
+.playList__window {
+  border: 1px solid red;
+  height: 100%;
+  list-style: none;
+  overflow: auto;
+  display: grid;
+  grid-auto-rows: 60px;
+  gap: 10px;
+}
+
+.playList__item {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  cursor: pointer;
+}
+
+/* .playList__item span {
+  display: block;
+} */
+
+#player {
+  display: none;
+}
+
+.player__button {
+  border: 1px solid black;
+}
+
+.player__window {
+  width: 300px;
+  height: 50px;
+  background-color: red;
+}
