@@ -15,6 +15,7 @@ export default class Controller {
     this.player = null;
     this.isPlaying = 0;
     this.indexSong = null;
+    this.shuffle = 0;
   }
 
   handleControlClick(e) {
@@ -41,11 +42,15 @@ export default class Controller {
         this.playBtn.innerHTML = "<i class='fas fa-pause'></i>";
       }
     } else if (className.includes("random")) {
-      if (e.target.style.color === "red") {
+      if (this.shuffle === 0) {
         //랜덤 활성화
         player.setShuffle(true);
+        this.randomSong.style.color = "green";
+        this.shuffle = 1;
       } else {
         player.setShuffle(false);
+        this.randomSong.style.color = "red";
+        this.shuffle = 0;
       }
     }
   }
@@ -56,6 +61,7 @@ export default class Controller {
       this.indexSong = e.target.getPlaylistIndex();
       const list = JSON.parse(localStorage.getItem("playlist"));
       this.playWindow.innerText = list[e.target.getPlaylistIndex()].title;
+      player.setLoop(true);
     }
   }
 
