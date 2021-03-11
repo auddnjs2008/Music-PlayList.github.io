@@ -19,8 +19,8 @@ export default class Search {
       const iframe = document.createElement("iframe");
       const button = document.createElement("button");
       iframe.src = `https://www.youtube.com/embed/${item.id.videoId}`;
-      iframe.width = 380;
-      iframe.height = 200;
+      iframe.width = 330;
+      iframe.height = 189;
       button.id = item.id.videoId;
       button.setAttribute("data-title", item.snippet.title);
       button.className = "search__btn";

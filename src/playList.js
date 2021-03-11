@@ -10,6 +10,7 @@ export default class PlayList {
     this.listUl = document.querySelector(".playList__window");
     this.searchUl = document.querySelector(".search__window");
     this.playVideo = document.querySelector("#player");
+
     this.myController = new Controller();
   }
 
@@ -18,7 +19,8 @@ export default class PlayList {
     const span = document.createElement("span");
     const btn = document.createElement("button");
     btn.innerHTML = '<i class="fas fa-minus-circle"></i>';
-    span.innerText = song.title;
+    span.innerText =
+      song.title.length > 40 ? song.title.substring(0, 40) + "..." : song.title;
     li.id = song.id;
     li.setAttribute("data-index", index);
     li.className = "playList__item";
@@ -67,6 +69,9 @@ export default class PlayList {
     setTimeout(() => {
       player.playVideoAt(parseInt(index) - 1);
       player.setLoop(true);
+      this.myController.isShuffle
+        ? player.setShuffle(true)
+        : player.setShuffle(false);
     }, 300);
   }
 
@@ -85,6 +90,7 @@ export default class PlayList {
   }
 
   init() {
+    this.myController.init();
     if (localStorage.getItem("playlist")) {
       JSON.parse(localStorage.getItem("playlist")).forEach((song, index) =>
         this.makeList(song, index + 1)
@@ -93,6 +99,5 @@ export default class PlayList {
 
     this.searchUl.addEventListener("click", (e) => this.drawList(e));
     this.listUl.addEventListener("click", (e) => this.listInClick(e));
-    this.myController.init();
   }
 }

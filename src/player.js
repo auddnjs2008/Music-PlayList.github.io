@@ -17,7 +17,7 @@ setTimeout(
       index: 0,
       startSeconds: 0,
     }),
-  1000
+  1100
 );
 
 export const playListSet = () => {

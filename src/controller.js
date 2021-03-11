@@ -15,14 +15,15 @@ export default class Controller {
     this.player = null;
     this.isPlaying = 0;
     this.indexSong = null;
-    this.shuffle = 0;
+    this.isShuffle = 0;
   }
 
   handleControlClick(e) {
     const {
       target: { className },
     } = e;
-    if (className.includes("play")) {
+
+    if (className === "play song" || className === "fas fa-play-circle") {
       this.playBtn.innerHTML = "<i class='fas fa-pause'></i>";
 
       player.playVideo();
@@ -42,15 +43,16 @@ export default class Controller {
         this.playBtn.innerHTML = "<i class='fas fa-pause'></i>";
       }
     } else if (className.includes("random")) {
-      if (this.shuffle === 0) {
+      if (this.isShuffle === 0) {
         //랜덤 활성화
         player.setShuffle(true);
-        this.randomSong.style.color = "green";
-        this.shuffle = 1;
+
+        this.randomSong.style.color = "#81c147";
+        this.isShuffle = 1;
       } else {
         player.setShuffle(false);
         this.randomSong.style.color = "red";
-        this.shuffle = 0;
+        this.isShuffle = 0;
       }
     }
   }
@@ -58,9 +60,10 @@ export default class Controller {
   getSongTitle(e) {
     if (e.data === 3) {
       player.seekTo(0);
-      this.indexSong = e.target.getPlaylistIndex();
+      const id = player.getPlaylist()[e.target.getPlaylistIndex()];
       const list = JSON.parse(localStorage.getItem("playlist"));
-      this.playWindow.innerText = list[e.target.getPlaylistIndex()].title;
+      this.indexSong = list.findIndex((item) => item.id === id);
+      this.playWindow.innerText = list[this.indexSong].title;
       player.setLoop(true);
     }
   }
