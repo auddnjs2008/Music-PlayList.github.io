@@ -1,15 +1,22 @@
+import LogOut from "./logout.js";
+import { player } from "./player.js";
+
+const logOut = new LogOut();
 export default class Login {
   constructor() {
-    this.loginForm = document.querySelector(".login__form");
+    this.loginForm = document.querySelector(".login");
     this.createBtn = document.querySelector(".login__toggle");
     this.inputId = document.querySelector("input[type='text']");
     this.inputPassword = document.querySelector("input[type='password']");
     this.submitBtn = this.loginForm.querySelector("input[type='submit']");
+    this.titleHello = document.querySelector(".titleHello");
+    this.titleName = document.querySelector(".titleName");
     this.create = 0;
     this.error = document.querySelector(".login__error");
     this.profile = localStorage.getItem("profile")
       ? JSON.parse(localStorage.getItem("profile"))
       : { id: "", password: "", login: false };
+    this.logOut = new LogOut(this.profile);
   }
 
   loginSuccess(id, password) {
@@ -17,7 +24,10 @@ export default class Login {
     localStorage.setItem("profile", JSON.stringify(this.profile));
     // login화면을 사라지게 해야한다.
     this.error.innerHTML = "";
-    this.loginForm.parentNode.style.display = "none";
+    this.loginForm.style.display = "none";
+    this.titleHello.innerText = "Hello";
+    this.titleName.innerText = `${this.profile.id}`;
+    this.showMp3();
   }
   loginError() {
     // 에러메세지를 출력해준다.
@@ -31,7 +41,12 @@ export default class Login {
   loginIsTrue(id, password) {
     this.inputId.value = "";
     this.inputPassword.value = "";
-    if (this.profile === { id, password, login: false }) {
+    this.profile = JSON.parse(localStorage.getItem("profile"));
+
+    if (
+      JSON.stringify(this.profile) ===
+      JSON.stringify({ id, password, login: false })
+    ) {
       this.loginSuccess(id, password);
     } else {
       this.loginError();
@@ -40,16 +55,21 @@ export default class Login {
 
   createId(id, password) {
     const newProfile = { id, password, login: true };
+    this.inputId.value = "";
+    this.inputPassword.value = "";
     this.profile = newProfile;
     localStorage.setItem("profile", JSON.stringify(newProfile));
-    this.loginForm.parentNode.style.display = "none";
+    this.loginForm.style.display = "none";
     this.error.innerText = "";
+    this.showMp3();
   }
 
   onSubmit(e) {
     e.preventDefault();
+
     const id = this.inputId.value;
     const password = this.inputPassword.value;
+
     if (id !== "" && password !== "") {
       this.create
         ? this.createId(id, password)
@@ -72,11 +92,35 @@ export default class Login {
     }
   }
 
+  clearMp3() {
+    const sections = document.querySelectorAll("section");
+    const videoWindow = document.querySelector("#player");
+    const logOutBtn = document.querySelector(".logout");
+    sections.forEach((item) => {
+      if (item.className !== "login") item.style.display = "none";
+    });
+    logOutBtn.style.opacity = "0";
+    videoWindow.style.opacity = "0";
+  }
+
+  showMp3() {
+    const controller = document.querySelector(".player");
+    const videoWindow = document.querySelector("#player");
+    const logOutBtn = document.querySelector(".logout");
+    logOutBtn.style.opacity = "1";
+    controller.style.display = "flex";
+    videoWindow.style.opacity = "1";
+    this.logOut.init();
+  }
+
   init() {
     if (this.profile.login) {
-      this.loginForm.parentNode.style.display = "none";
+      this.logOut.init();
+      this.loginForm.style.display = "none";
       return;
     }
+    //player.destroy();
+    this.clearMp3();
     this.loginForm.addEventListener("submit", (e) => this.onSubmit(e));
     this.createBtn.addEventListener("click", (e) => this.onClick(e));
   }

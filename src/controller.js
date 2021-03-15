@@ -51,7 +51,7 @@ export default class Controller {
         this.isShuffle = 1;
       } else {
         player.setShuffle(false);
-        this.randomSong.style.color = "red";
+        this.randomSong.style.color = "#c4302b";
         this.isShuffle = 0;
       }
     }

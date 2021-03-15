@@ -9,16 +9,15 @@ export const player = new YT.Player("player", {
   width: "400",
 });
 
-setTimeout(
-  () =>
-    player.loadPlaylist({
-      playlist: localPlayList,
-      listType: "playlist",
-      index: 0,
-      startSeconds: 0,
-    }),
-  1100
-);
+setTimeout(() => {
+  player.loadPlaylist({
+    playlist: localPlayList,
+    listType: "playlist",
+    index: 0,
+    startSeconds: 0,
+  });
+  // player.stopVideo();
+}, 1100);
 
 export const playListSet = () => {
   const localList = localStorage.getItem("playlist")
