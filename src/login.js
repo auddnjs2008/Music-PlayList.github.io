@@ -62,6 +62,8 @@ export default class Login {
     localStorage.setItem("profile", JSON.stringify(newProfile));
     this.loginForm.style.display = "none";
     this.error.innerText = "";
+    this.titleHello.innerText = "Hello";
+    this.titleName.innerText = `${this.profile.id}`;
     this.showMp3();
   }
 
