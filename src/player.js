@@ -16,7 +16,7 @@ setTimeout(() => {
     index: 0,
     startSeconds: 0,
   });
-  // player.stopVideo();
+  setTimeout(() => player.stopVideo(), 500);
 }, 1100);
 
 export const playListSet = () => {

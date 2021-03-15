@@ -1,7 +1,6 @@
 import LogOut from "./logout.js";
 import { player } from "./player.js";
 
-const logOut = new LogOut();
 export default class Login {
   constructor() {
     this.loginForm = document.querySelector(".login");
@@ -41,7 +40,9 @@ export default class Login {
   loginIsTrue(id, password) {
     this.inputId.value = "";
     this.inputPassword.value = "";
-    this.profile = JSON.parse(localStorage.getItem("profile"));
+    this.profile = localStorage.getItem("profile")
+      ? JSON.parse(localStorage.getItem("profile"))
+      : { id: "", password: "", login: false };
 
     if (
       JSON.stringify(this.profile) ===

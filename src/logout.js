@@ -5,6 +5,7 @@ import { player } from "./player.js";
 export default class LogOut {
   constructor(profile) {
     this.logOutBtn = document.querySelector(".logout");
+    this.playBtn = document.querySelector(".play");
     //this.profile = JSON.parse(localStorage.getItem("profile"));
     this.profile = profile;
     this.loginForm = document.querySelector(".login");
@@ -25,6 +26,7 @@ export default class LogOut {
     this.logOutBtn.style.opacity = "0";
     this.titleHello.innerText = "";
     this.titleName.innerText = "";
+    this.playBtn.innerHTML = "<i class='fas fa-play-circle'></i>";
   }
 
   onClickBtn(e) {
